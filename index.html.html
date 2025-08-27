@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="uk" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadomancer Presale | SHADOMANCER Token</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --text-color: #e0e0e0;
+            --highlight-color: #a450ff;
+            --secondary-color: rgba(51, 51, 51, 0.5);
+            --bg-color: #0d0d0d;
+            --glitch-color1: #c370ff;
+            --glitch-color2: #ff40e6;
+        }
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: var(--bg-color);
+        }
+        
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            filter: brightness(0.7);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 10;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--highlight-color);
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--highlight-color);
+            text-decoration: none;
+            text-shadow: 0 0 5px var(--highlight-color);
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+            text-transform: uppercase;
+        }
+        .nav-link:hover {
+            color: var(--highlight-color);
+            text-shadow: 0 0 5px var(--highlight-color);
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            z-index: 2;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--highlight-color);
+            animation: glitch-anim 2s infinite linear alternate;
+        }
+        .hero p {
+            position: relative;
+            z-index: 2;
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        .btn {
+            background-color: var(--highlight-color);
+            color: var(--bg-color);
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 15px var(--highlight-color);
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px var(--highlight-color);
+        }
+        .section {
+            padding: 80px 20px;
+            border-top: 1px solid var(--secondary-color);
+            background-color: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .section-background-media {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(0.5);
+        }
+
+        #about, #roadmap, #tokenomics, #fourth-section, #footer-section {
+            background-image: none;
+        }
+
+        #about::before, #tokenomics::before, #roadmap::before, #fourth-section::before, #footer-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px var(--glitch-color1);
+            animation: glitch-anim 2s infinite linear alternate;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, min-content);
+            gap: 40px;
+            justify-content: center;
+        }
+        
+        .card {
+            background: var(--secondary-color);
+            backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, var(--glitch-color1), var(--glitch-color2)) 1;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            max-width: 300px;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card h3 {
+            color: var(--highlight-color);
+            text-shadow: 0 0 5px var(--highlight-color);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 2px solid var(--highlight-color);
+            font-size: 14px;
+            background-color: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+        }
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        .footer-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            filter: brightness(0.5);
+        }
+        
+        .social-links a {
+            color: var(--text-color);
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--highlight-color);
+        }
+        
+        @keyframes glitch-anim {
+            0% { text-shadow: 0 0 10px var(--glitch-color1); }
+            50% { text-shadow: 2px 2px 5px var(--glitch-color2), -2px -2px 5px var(--glitch-color1); }
+            100% { text-shadow: -2px -2px 5px var(--glitch-color2), 2px 2px 5px var(--glitch-color1); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header container">
+        <a href="#" class="logo">$SHADOMANCER</a>
+        <nav class="nav-links">
+            <a href="#about" class="nav-link">Про проєкт</a>
+            <a href="#tokenomics" class="nav-link">Токеноміка</a>
+            <a href="#roadmap" class="nav-link">Дорожня карта</a>
+            <a href="#fourth-section" class="nav-link">Контакти</a>
+        </nav>
+    </header>
+
+    <main class="hero">
+        <img src="photo_2025-08-27_20-07-01.jpg" alt="Shadomancer background" class="hero-bg-image">
+        <div class="overlay"></div>
+        <div class="container">
+            <h1>Ласкаво просимо до світу Shadomancer</h1>
+            <p>
+                Увійдіть у новий світовий порядок з SHADOMANCER, де нестримна сила мемів зустрічається зі своїм домом у надзвичайно швидкому протоколі Layer 2 EVM.
+            </p>
+            <a href="#" class="btn">Придбати $SHADOMANCER</a>
+        </div>
+    </main>
+
+    <section id="about" class="section">
+        <video class="section-background-media" autoplay muted loop playsinline>
+            <source src="video_2025-08-27_20-07-07.mp4" type="video/mp4">
+            Ваш браузер не підтримує тег відео.
+        </video>
+        <div class="container">
+            <h2 class="section-title">Про проєкт Shadomancer</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Що таке SHADOMANCER?</h3>
+                    <p>
+                        SHADOMANCER — це нова мем-монета, яка працює на власному блокчейні Shadomancer Chain, забезпечуючи низькі комісії та високу швидкість транзакцій.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>Чому варто обрати нас?</h3>
+                    <p>
+                        Ми створюємо простір для інновацій, де меми можуть процвітати, а спільнота отримує повний контроль над майбутнім проєкту.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>Наша місія</h3>
+                    <p>
+                        Наша мета — стати провідною мем-монетою, яка об'єднує користувачів по всьому світу завдяки силі культури мемів.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tokenomics" class="section">
+        <img src="photo_2025-08-27_20-38-18.jpg" alt="Токеноміка фон" class="section-background-media">
+        <div class="container">
+            <h2 class="section-title">Токеноміка</h2>
+            <p style="text-align: center;">Загальний обсяг пропозиції: 1,000,000,000 $SHADOMANCER</p>
+            <ul style="max-width: 600px; margin: 40px auto; list-style-type: none; padding: 0;">
+                <li style="background-color: #222; padding: 15px; margin-bottom: 10px; border-radius: 5px;">
+                    50% — Передпродаж (Presale)
+                </li>
+                <li style="background-color: #222; padding: 15px; margin-bottom: 10px; border-radius: 5px;">
+                    30% — Ліквідність та біржові лістинги
+                </li>
+                <li style="background-color: #222; padding: 15px; margin-bottom: 10px; border-radius: 5px;">
+                    10% — Маркетинг та розвиток
+                </li>
+                <li style="background-color: #222; padding: 15px; border-radius: 5px;">
+                    10% — Команда та радники (заблоковано)
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="roadmap" class="section">
+        <video class="section-background-media" autoplay muted loop playsinline>
+            <source src="video_2025-08-27_20-41-46.mp4" type="video/mp4">
+            Ваш браузер не підтримує тег відео.
+        </video>
+        <div class="container">
+            <h2 class="section-title">Дорожня карта</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Фаза 1</h3>
+                    <p>Запуск сайту. Проведення передпродажу. Створення та розвиток спільноти.</p>
+                </div>
+                <div class="card">
+                    <h3>Фаза 2</h3>
+                    <p>Лістинг на децентралізованих біржах (DEX). Партнерство та маркетинг.</p>
+                </div>
+                <div class="card">
+                    <h3>Фаза 3</h3>
+                    <p>Лістинг на централізованих біржах (CEX). Розробка Shadomancer Chain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="fourth-section" class="section">
+        <video class="section-background-media" autoplay muted loop playsinline>
+            <source src="video_2025-08-27_20-07-14.mp4" type="video/mp4">
+            Ваш браузер не підтримує тег відео.
+        </video>
+        <div class="container">
+            <h2 class="section-title">Контакти</h2>
+            <p style="text-align: center;">Слідкуйте за нами в соціальних мережах, щоб бути в курсі всіх новин.</p>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>Telegram</h3>
+                    <p>Приєднуйтесь до нашої спільноти.</p>
+                </div>
+                <div class="card">
+                    <h3>Twitter</h3>
+                    <p>Будьте в курсі останніх оновлень.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <img src="photo_2025-08-27_20-47-17.jpg" alt="Фон футера" class="footer-bg-image">
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="social-links">
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i></a>
+            </div>
+            <p>&copy; 2025 Shadomancer. Всі права захищені.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+</body>
+</html>
